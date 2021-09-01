@@ -9,14 +9,17 @@ To run RGSpipe on your own computer it is required to reproduce a specific envir
 
 Steps to reproduce the environment: 
 
-1. Clone the github repository of the URL in the desired path: 
-2. Install Anaconda for Windows10 from: https://www.anaconda.com/products/individual
-3. Open Anaconda Prompt (Anaconda3), go to the path where the github repo has been cloned and run the following commands:
+1. Clone the github repository of the URL in the desired path
+2. Download both models from the URLs in models_urls.txt file and save them into models folder. 
+3. Install Anaconda for Windows10 from: https://www.anaconda.com/products/individual
+4. Open Anaconda Prompt (Anaconda3), go to the path where the github repo has been cloned and run the following commands:
     <pre><code>
     conda create --name [name_environment] python==3.7.0
     conda activate [name_environment]
     pip install -r requirements.txt
     </code></pre>
+    
+  
 
 RGSpipe CPU&GPU:
 
