@@ -4,10 +4,11 @@
 RGSpipe is a fully automated pipeline that consist of two interconnected procedures: MediaPipe to detect 2D joint coordinates and a neural network with roughly 5 million trainable parameters with batch normalization, dropout regularization and rectified Linear units that allows mapping the 2D coordinates into the Kinect's 3D coordinate system. 
 
 ### Environment reproduction
+The proposed solution and its installation is only described for a Windows 10 OS. 
+To run RGSpipe on your own computer it is required to reproduce a specific environment. The solution runs entirely in CPU in 16,27 ms in average per frame. 
 
-Depending on whether you desire to run RGSpipe solution entirely on CPU or MediaPipe Pose algorithm in CPU and NN in GPU different steps have to be followed. 
-The environment reproduction explained in the present document is specifically for Windows 10 OS. 
-RGSpipe entirely on CPU:
+Steps to reproduce the environment: 
+
 1. Clone the github repository of the URL in the desired path: 
 2. Install Anaconda for Windows10 from: https://www.anaconda.com/products/individual
 3. Open Anaconda Prompt (Anaconda3), go to the path where the github repo has been cloned and run the following commands:
