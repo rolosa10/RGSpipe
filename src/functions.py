@@ -6,7 +6,7 @@ import variables
 
 #Initialize the Mediapipe module with its corresponding parameters
 mp_pose = mp.solutions.pose
-pose = mp_pose.Pose(model_complexity=0,min_detection_confidence=0.8,min_tracking_confidence=0.5)
+pose = mp_pose.Pose(model_complexity=0,min_detection_confidence=0.4,min_tracking_confidence=0.5)
 
 def split_3_coordinates(values_array): 
     output = []
@@ -54,10 +54,20 @@ def mediapipe_inference(frame):
         
 def callibration_picture():
     print('A picture will be taken in 2 secs. Please show all your upper body')
-    time.sleep(2)
+    #time.sleep(2)
     for i in range(1,2):
         cap1 = cv2.VideoCapture(0)
         success, frame1 = cap1.read()
         frame1 = cv2.resize(frame1,(1920,1080))
         cap1.release()
     return(frame1)
+
+def change_brightness(img, value):
+    hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+    h, s, v = cv2.split(hsv)
+    v = cv2.add(v,value)
+    v[v > 255] = 255
+    v[v < 0] = 0
+    final_hsv = cv2.merge((h, s, v))
+    img = cv2.cvtColor(final_hsv, cv2.COLOR_HSV2BGR)
+    return img
