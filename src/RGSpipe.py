@@ -13,6 +13,7 @@ import cv2
 from functions import split_3_coordinates
 from functions import mediapipe_inference
 from functions import callibration_picture
+from functions import change_brightness
 
 #Socket definition
 ip_receiver = '127.0.0.1'
@@ -29,11 +30,17 @@ scaler = pickle.load(open('../models/'+experiment+'/scaler.pkl','rb'))
 ##########################
 
 frame = callibration_picture()
+#Reduce image brightness
+#frame = change_brightness(frame,-30)
 detected_keypoints, frame = mediapipe_inference(frame)
 #If there is one NaN in callibration picture (joint not detected properly) or no keypoints have been detected --> Another picture is taken
 while pd.DataFrame(detected_keypoints).T.isna().sum().sum()>= 1 or len(detected_keypoints) == 0: 
     print('Joints have not been detected properly - Another picture will be taken \n')
+    print(detected_keypoints)
     frame = callibration_picture()
+
+    #Reduce image brightness
+    #frame = change_brightness(frame,-30)
     detected_keypoints,frame = mediapipe_inference(frame)
 
 df = pd.DataFrame(detected_keypoints).T
@@ -55,6 +62,9 @@ try:
         n = n+1
         sucess,frame = cap.read()
         frame = cv2.resize(frame,(1920,1080))
+        
+        #Reduce frame brightness
+        #frame = change_brightness(frame,v=-30)
 
         #MediaPipe inference
         start1 = time.time()
